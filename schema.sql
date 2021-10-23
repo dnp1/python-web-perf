@@ -1,1 +1,1 @@
-create table test (a int primary key, b text);
+create table IF NOT EXISTS test  (a int primary key, b text);

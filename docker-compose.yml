@@ -1,0 +1,51 @@
+version: "3"
+services:
+  reverse-proxy:
+    image: nginx:1.21.3-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - python:python
+  python:
+    build: .
+    environment:
+      PWPWORKERS: 1
+      PGHOST: postgres
+      PGDATABASE: postgres
+      PGUSER: postgres
+      PGPASSWORD: mypass
+      PGPORT: 5432
+    command: [ "bash" , "${COMMAND}" ]
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+    expose:
+      - 8001
+    links:
+      - postgres:pgbouncer
+  pgbouncer:
+    image: edoburu/pgbouncer
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_PASSWORD: mypass
+      DB_PORT: 5432
+    expose:
+      - 5432
+    links:
+      - postgres:postgres
+  postgres:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypass
+    expose:
+      - 5432
+    ports:
+    - 5432:5432
