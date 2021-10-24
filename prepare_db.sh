@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 export PGPASSWORD=mypass
 export PGHOST=localhost

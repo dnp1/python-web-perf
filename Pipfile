@@ -10,16 +10,17 @@ starlette = "~=0.13.4"
 uvicorn = "~=0.11.5"
 aiopg = "~=1.0.0"
 psycopg2-binary = "~=2.9.1"
-gevent = "~=20.5.0"
-meinheld = "~=1.0.1"
+gevent = "~=20.12.1"
+meinheld = "~=1.0.2"
 falcon = "~=2.0.0"
 sanic = "~=19.12.2"
 bottle = "~=0.12.18"
 daphne = "~=2.5.0"
 Flask = "~=1.1.0"
 uWSGI = "~=2.0.0"
+psycogreen = "==1.0.2"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"

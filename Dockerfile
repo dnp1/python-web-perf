@@ -1,4 +1,4 @@
-FROM python:3.9.7-slim-buster as base_linux
+FROM python:3.8.11-slim-buster as base_linux
 RUN pip install -U pip setuptools pipenv;
 
 RUN apt-get update \
